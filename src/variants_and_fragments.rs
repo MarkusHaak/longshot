@@ -227,17 +227,17 @@ pub fn parse_vcf_potential_variants(
 
             if s.len() > 50 {
                 eprintln!(
-                    "WARNING: Variant at {}:{} in input VCF will be ignored due to excessively large indel (>50 bp), which may cause unexpected behaviour.",
+                    "WARNING: Variant at {}:{} in input VCF is an excessively large indel (>50 bp), which may cause unexpected behaviour.",
                     &chrom,
                     record.pos()+1);
                 too_big_indel = true;
-                break;
+                //break;
             }
 
             alleles.push(s);
         }
 
-        if non_acgt || too_big_indel {continue;}
+        if non_acgt {continue;} //|| too_big_indel {continue;}
 
         if alleles.len() > 2 {
             eprintln!(
